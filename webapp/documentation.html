@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Zufallszahlengenerator - Dokumentation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Dokumentation</h1>
+        
+        <div class="doc-section">
+            <h2>Überblick</h2>
+            <p>Der Zufallszahlengenerator ist eine Docker-basierte Webanwendung, die bei jedem Laden der Seite eine neue Zufallszahl generiert.</p>
+        </div>
+
+        <div class="doc-section">
+            <h2>Technische Architektur</h2>
+            <div class="architecture">
+                <h3>Docker Container</h3>
+                <ul>
+                    <li><strong>Webapp (rng-webapp)</strong>
+                        <ul>
+                            <li>Basis: Node.js Alpine</li>
+                            <li>Funktion: Bereitstellung der Webanwendung</li>
+                            <li>Port: 8080 (intern)</li>
+                        </ul>
+                    </li>
+                    <li><strong>Nginx Proxy (rng-proxy)</strong>
+                        <ul>
+                            <li>Basis: Nginx Alpine</li>
+                            <li>Funktion: Reverse Proxy</li>
+                            <li>Port: 80 → 8080 (extern)</li>
+                        </ul>
+                    </li>
+                    <li><strong>Datendienst (rng-data)</strong>
+                        <ul>
+                            <li>Basis: Alpine Linux</li>
+                            <li>Funktion: Datenpersistenz</li>
+                            <li>Volume: rng-data-volume</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <h2>Komponenten</h2>
+            <div class="components">
+                <h3>Webanwendung</h3>
+                <ul>
+                    <li><strong>Frontend</strong>: HTML5, CSS3, JavaScript</li>
+                    <li><strong>Server</strong>: Node.js mit http-server</li>
+                    <li><strong>Proxy</strong>: Nginx für Lastverteilung</li>
+                </ul>
+
+                <h3>Datenspeicherung</h3>
+                <ul>
+                    <li>Docker Volume für Datenpersistenz</li>
+                    <li>Gemeinsam genutzter Speicher zwischen Containern</li>
+                </ul>
+
+                <h3>Netzwerk</h3>
+                <ul>
+                    <li>Internes Docker-Netzwerk (rng-network)</li>
+                    <li>Automatische Service-Discovery</li>
+                    <li>Isolierte Container-Kommunikation</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <h2>Funktionen</h2>
+            <div class="features">
+                <ul>
+                    <li>Generierung von Zufallszahlen (1-100)</li>
+                    <li>Automatische Aktualisierung bei Seitenneuladen</li>
+                    <li>Responsive Design für alle Bildschirmgrößen</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <h2>Infrastruktur</h2>
+            <div class="infrastructure">
+                <h3>System-Anforderungen</h3>
+                <ul>
+                    <li>Docker Desktop</li>
+                    <li>Windows 10/11 oder Linux</li>
+                    <li>Mindestens 2GB RAM</li>
+                    <li>500MB freier Speicherplatz</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <h2>Sicherheit</h2>
+            <div class="security">
+                <ul>
+                    <li>Container-Isolation</li>
+                    <li>Offizielle Base Images</li>
+                    <li>Keine sensiblen Daten</li>
+                    <li>Localhost-Beschränkung</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <a href="index.html" class="doc-button">Zurück zur Anwendung</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+services:
+  webapp:
+    build: ./webapp
+    container_name: rng-webapp
+    volumes:
+      - data-volume:/app/data
+    networks:
+      - app-network
+
+  nginx:
+    image: nginx:alpine
+    container_name: rng-proxy
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "8080:80"
+    depends_on:
+      - webapp
+    networks:
+      - app-network
+
+  data-service:
+    image: alpine:latest
+    container_name: rng-data
+    volumes:
+      - data-volume:/data
+    command: ["sh", "-c", "while true; do sleep 1h; done"]
+    networks:
+      - app-network
+
+volumes:
+  data-volume:
+    name: rng-data-volume
+
+networks:
+  app-network:
+    name: rng-network
